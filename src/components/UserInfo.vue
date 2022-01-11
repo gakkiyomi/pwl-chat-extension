@@ -145,7 +145,7 @@ export default {
       this[command]()
     },
     openNotifications() {
-      window.open(process.env.VUE_APP_BASE_URL + '/notifications/commented')
+      this.$router.push({ name: 'Notification' })
     },
     showSetting() {
       this.drawer = true

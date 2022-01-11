@@ -1,12 +1,19 @@
 export function getDate() {
   let now = new Date()
-  let month = now.getMonth() + 1
-  let date = now.getDate()
-  return now.getFullYear() + '-' + (month < 10 ? '0' + month : month) + '-' + (date < 10 ? '0' + date : date)
+  return now.getFullYear() + '-' + repair(now.getMonth() + 1) + '-' + repair(now.getDate())
+}
+
+export function getDateTime(str) {
+  let now = str ? new Date(str) : new Date()
+  return now.getFullYear() + '-' + repair(now.getMonth() + 1) + '-' + repair(now.getDate()) + ' ' + repair(now.getHours() + 8) + ':' + repair(now.getMinutes()) + ':' + repair(now.getSeconds())
 }
 
 export function isRedPacket(message) {
   return (
     message.content && -1 !== message.content.indexOf('msgType":"redPacket')
   )
+}
+
+function repair(s) {
+  return s < 10 ? '0' + s : s
 }
